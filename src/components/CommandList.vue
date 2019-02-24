@@ -39,7 +39,6 @@ export default {
 
 <style lang="scss" scoped>
   .ccontainer {
-    min-height: 300px;
     padding: 20px;
   }
 </style>

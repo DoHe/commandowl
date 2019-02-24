@@ -11,9 +11,11 @@
       </h6>
       <div class="command has-text-light">
         <p class="command-input is-italic">
-          $ {{ command.exampleInput }}
+          <span class="pre">$ {{ command.exampleInput }}</span>
         </p>
-        <p>{{ command.exampleOutput }}</p>
+        <p class="command-output">
+          <span class="pre">{{ command.exampleOutput }}</span>
+        </p>
       </div>
     </div>
   </div>
@@ -32,16 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  pre {
-    font-size: inherit;
-    color: inherit;
-    border: initial;
-    padding: initial;
-    background-color: inherit;
-  }
-
   .ccontainer {
-    min-height: 300px;
     padding: 10px;
   }
 
@@ -56,5 +49,17 @@ export default {
 
   .command-input {
     padding-left: 5px;
+  }
+
+  .command-input,
+  .command-output {
+    overflow-x: auto;
+    max-width: 70%;
+  }
+
+  .pre {
+    white-space: pre;
+    font-family: monospace;
+    max-width: 40px;
   }
 </style>
