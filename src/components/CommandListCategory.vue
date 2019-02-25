@@ -33,10 +33,6 @@ export default {
     CommandListItem,
   },
   props: {
-    selected: {
-      type: Object,
-      default: () => ({}),
-    },
     categoryTitle: {
       type: String,
       default: '',
@@ -46,9 +42,14 @@ export default {
       default: () => ({}),
     },
   },
+  computed: {
+    selected() {
+      return this.$store.state.selected;
+    },
+  },
   methods: {
     handleSelected(command) {
-      this.$emit('commandSelected', { category: this.categoryTitle, command });
+      this.$store.commit('setSelected', { category: this.categoryTitle, command });
     },
   },
 };

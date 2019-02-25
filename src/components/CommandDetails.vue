@@ -1,20 +1,20 @@
 <template>
   <div class="ccontainer has-background-white">
     <h5 class="title is-4">
-      {{ command.command }}
+      {{ selectedCommand.command }}
     </h5>
-    <p>{{ command.longDescription }}</p>
+    <p>{{ selectedCommand.longDescription }}</p>
 
-    <div v-if="command.exampleInput" class="command-container">
+    <div v-if="selectedCommand.exampleInput" class="command-container">
       <h6 class="title is-5">
         Example
       </h6>
       <div class="command has-text-light">
         <p class="command-input is-italic">
-          <span class="pre">$ {{ command.exampleInput }}</span>
+          <span class="pre">$ {{ selectedCommand.exampleInput }}</span>
         </p>
         <p class="command-output">
-          <span class="pre">{{ command.exampleOutput }}</span>
+          <span class="pre">{{ selectedCommand.exampleOutput }}</span>
         </p>
       </div>
     </div>
@@ -24,10 +24,9 @@
 <script>
 export default {
   name: 'CommandDetails',
-  props: {
-    command: {
-      type: Object,
-      default: () => ({}),
+  computed: {
+    selectedCommand() {
+      return this.$store.getters.selectedCommand;
     },
   },
 };

@@ -6,7 +6,6 @@
       :category="category"
       :category-title="categoryTitle"
       :selected="selected"
-      @commandSelected="commandSelected"
     />
   </div>
 </template>
@@ -19,19 +18,12 @@ export default {
   components: {
     CommandListCategory,
   },
-  props: {
-    commands: {
-      type: Object,
-      default: () => ({}),
+  computed: {
+    commands() {
+      return this.$store.state.commands;
     },
-    selected: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  methods: {
-    commandSelected(selected) {
-      this.$emit('commandSelected', selected);
+    selected() {
+      return this.$store.state.selected;
     },
   },
 };

@@ -15,7 +15,8 @@
     "eslint-import-resolver-webpack": "0.11.0",
     "vue": "2.6.7",
     "vue-router": "3.0.2",
-    "vue-server-renderer": "2.6.7"
+    "vue-server-renderer": "2.6.7",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "@akryum/vue-cli-plugin-ssr": "0.5.0",

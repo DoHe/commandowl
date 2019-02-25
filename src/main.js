@@ -1,26 +1,25 @@
 import Vue from 'vue';
 import App from './App.vue';
-import { createRouter } from './router';
+import createStore from './store';
 
 Vue.config.productionTip = false;
 
 export async function createApp({
   beforeApp = () => {},
   afterApp = () => {},
+  context,
 } = {}) {
-  const router = createRouter();
-  await beforeApp({
-    router,
-  });
+  await beforeApp({ context });
 
+  const store = createStore();
   const app = new Vue({
-    router,
+    store,
     render: h => h(App),
   });
 
   const result = {
     app,
-    router,
+    store,
   };
 
   await afterApp(result);

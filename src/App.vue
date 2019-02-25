@@ -5,11 +5,7 @@
     </h1>
     <div class="columns">
       <div class="column is-two-fifths">
-        <CommandList
-          :commands="commands"
-          :selected="selected"
-          @commandSelected="commandSelected"
-        />
+        <CommandList />
       </div>
       <div class="column">
         <CommandDetails
@@ -31,16 +27,10 @@ export default {
     CommandDetails,
     CommandList,
   },
-  data() {
-    return {
-      commands,
-      selected: {},
-    };
-  },
   computed: {
     selectedCommand() {
       if (this.selected) {
-        const category = commands[this.selected.category];
+        const category = this.commands[this.selected.category];
         if (category) {
           const command = category[this.selected.command];
           if (command) {
@@ -51,10 +41,8 @@ export default {
       return {};
     },
   },
-  methods: {
-    commandSelected(selected) {
-      this.selected = selected;
-    },
+  serverPrefetch() {
+    return this.$store.commit('setCommands', commands);
   },
 };
 </script>

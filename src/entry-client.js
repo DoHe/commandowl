@@ -1,18 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { loadAsyncComponents } from '@akryum/vue-cli-plugin-ssr/client';
-
 import { createApp } from './main';
 
 createApp({
-  async beforeApp({
-    router,
-  }) {
-    await loadAsyncComponents({ router });
-  },
-
-  afterApp({
-    app,
-  }) {
+  afterApp({ app, store }) {
+    // eslint-disable-next-line no-underscore-dangle
+    if (window.__INITIAL_STATE__) {
+      // eslint-disable-next-line no-underscore-dangle
+      store.replaceState(window.__INITIAL_STATE__);
+    }
     app.$mount('#app');
   },
 });
