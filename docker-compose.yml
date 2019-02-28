@@ -1,0 +1,20 @@
+version: '3'
+services:
+  server:
+    build: .
+    environment:
+      - VUE_APP_MONGODB_URI=mongodb://root:pwd@db:27017
+    ports:
+    - "8000:8000"
+    volumes:
+    - .:/code
+    working_dir: /code
+    command: yarn ssr:serve --host
+    links:
+    - db
+  db:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pwd

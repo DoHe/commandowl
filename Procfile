@@ -1,1 +1,1 @@
-web: yarn ssr:start --host $HOSTNAME --port $PORT
+web: VUE_APP_MONGODB_URI=$MONGODB_URI yarn ssr:start --host $HOSTNAME --port $PORT
