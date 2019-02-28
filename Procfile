@@ -1,1 +1,1 @@
-web: yarn global add @vue/cli-service-global && yarn ssr:build && yarn ssr:start
+web: yarn ssr:start
