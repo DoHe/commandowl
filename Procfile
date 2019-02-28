@@ -1,0 +1,1 @@
+web: npm run ssr:build && npm run ssr:start
