@@ -1,1 +1,1 @@
-web: npm run ssr:build && npm run ssr:start
+web: yarn ssr:build && yarn ssr:start
