@@ -10,7 +10,6 @@ module.exports = {
   },
   pluginOptions: {
     ssr: {
-      port: process.env.PORT || 9000,
       defaultTitle: 'Commandowl',
       favicon: './public/favicon.ico',
     },
