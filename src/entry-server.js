@@ -40,7 +40,7 @@ export default context => new Promise(async (resolve, reject) => {
     afterApp({ app, store }) {
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
-        // .then(() => client.db('commandowl'))
+        .then(() => client.db())
         .then(db => readCommands(db, store))
         .then(() => {
           // eslint-disable-next-line no-param-reassign
