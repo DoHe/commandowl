@@ -7,6 +7,7 @@
       Commandowl
     </h1>
     <AddCommand />
+    <AddCategory />
     <div class="columns">
       <div class="column is-two-fifths">
         <CommandList />
@@ -22,6 +23,7 @@
 import CommandDetails from '@/components/CommandDetails.vue';
 import CommandList from '@/components/CommandList.vue';
 import AddCommand from '@/components/AddCommand.vue';
+import AddCategory from '@/components/AddCategory.vue';
 
 export default {
   name: 'Main',
@@ -29,6 +31,7 @@ export default {
     CommandDetails,
     CommandList,
     AddCommand,
+    AddCategory,
   },
   computed: {
     selectedCommand() {

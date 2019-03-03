@@ -7,6 +7,12 @@
       :category-title="categoryTitle"
       :selected="selected"
     />
+    <a
+      class="button is-rounded"
+      @click="setAddingCategory"
+    >
+      Add category
+    </a>
   </div>
 </template>
 
@@ -24,6 +30,11 @@ export default {
     },
     selected() {
       return this.$store.state.selected;
+    },
+  },
+  methods: {
+    setAddingCategory() {
+      this.$store.commit('setAddingCategory', true);
     },
   },
 };

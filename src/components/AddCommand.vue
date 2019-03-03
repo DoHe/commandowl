@@ -75,17 +75,18 @@
 </template>
 
 <script>
+function defaultData() {
+  return {
+    command: '',
+    shortDescription: '',
+    longDescription: '',
+    exampleInput: '',
+    exampleOutput: '',
+  };
+}
 export default {
   name: 'AddCommand',
-  data() {
-    return {
-      command: '',
-      shortDescription: '',
-      longDescription: '',
-      exampleInput: '',
-      exampleOutput: '',
-    };
-  },
+  data: defaultData,
   methods: {
     add() {
       const cmd = {
@@ -119,6 +120,7 @@ export default {
     },
     stopAdding() {
       this.$store.commit('setAdding', '');
+      Object.assign(this.$data, defaultData());
     },
   },
 };

@@ -3,7 +3,8 @@ services:
   server:
     build: .
     environment:
-      - VUE_APP_MONGODB_URI=mongodb://root:pwd@db:27017/commandowl
+      - VUE_APP_MONGODB_URI=mongodb://root:pwd@db:27017
+      - VUE_APP_MONBODB_DB_NAME=commandowl
     ports:
     - "8000:8000"
     volumes:

@@ -9,6 +9,7 @@ export default function createStore() {
       selected: {},
       commands: {},
       adding: '',
+      addingCategory: false,
     },
     mutations: {
       setSelected(state, selected) {
@@ -23,11 +24,18 @@ export default function createStore() {
         // eslint-disable-next-line no-param-reassign
         state.adding = adding;
       },
+      setAddingCategory(state, adding) {
+        // eslint-disable-next-line no-param-reassign
+        state.addingCategory = adding;
+      },
       addCommand(state, { category, command }) {
         // eslint-disable-next-line no-param-reassign
         state.commands[category] = state.commands[category] || {};
         // eslint-disable-next-line no-param-reassign
         Vue.set(state.commands[category], command.command, command);
+      },
+      addCategory(state, category) {
+        Vue.set(state.commands, category, {});
       },
     },
     actions: {
