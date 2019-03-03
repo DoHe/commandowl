@@ -1,16 +1,18 @@
 <template>
   <div id="app" class="container is-fluid">
+    <figure class="image is-32x32 is-pulled-left">
+      <img src="./assets/icon.svg">
+    </figure>
     <h1 class="title">
       Commandowl
     </h1>
+    <AddCommand />
     <div class="columns">
       <div class="column is-two-fifths">
         <CommandList />
       </div>
       <div class="column">
-        <CommandDetails
-          :command="selectedCommand"
-        />
+        <CommandDetails :command="selectedCommand" />
       </div>
     </div>
   </div>
@@ -19,13 +21,14 @@
 <script>
 import CommandDetails from '@/components/CommandDetails.vue';
 import CommandList from '@/components/CommandList.vue';
-import commands from '@/commands';
+import AddCommand from '@/components/AddCommand.vue';
 
 export default {
   name: 'Main',
   components: {
     CommandDetails,
     CommandList,
+    AddCommand,
   },
   computed: {
     selectedCommand() {
@@ -40,9 +43,6 @@ export default {
       }
       return {};
     },
-  },
-  serverPrefetch() {
-    return this.$store.commit('setCommands', commands);
   },
 };
 </script>

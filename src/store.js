@@ -8,15 +8,26 @@ export default function createStore() {
     state: {
       selected: {},
       commands: {},
+      adding: '',
     },
     mutations: {
       setSelected(state, selected) {
         // eslint-disable-next-line no-param-reassign
         state.selected = selected;
       },
-      setCommands(state, commands) {
+      setCategory(state, { name, commands }) {
         // eslint-disable-next-line no-param-reassign
-        state.commands = commands;
+        state.commands[name] = commands;
+      },
+      setAdding(state, adding) {
+        // eslint-disable-next-line no-param-reassign
+        state.adding = adding;
+      },
+      addCommand(state, { category, command }) {
+        // eslint-disable-next-line no-param-reassign
+        state.commands[category] = state.commands[category] || {};
+        // eslint-disable-next-line no-param-reassign
+        Vue.set(state.commands[category], command.command, command);
       },
     },
     actions: {

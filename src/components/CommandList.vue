@@ -30,7 +30,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .ccontainer {
-    padding: 20px;
-  }
+.ccontainer {
+  padding: 20px;
+}
+
+.circle {
+  display: table-cell;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  /*make it pretty*/
+  background: #000;
+  color: #fff;
+}
 </style>

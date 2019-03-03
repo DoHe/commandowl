@@ -1,3 +1,5 @@
+const { extendServer } = require('./src/server');
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -12,6 +14,7 @@ module.exports = {
     ssr: {
       defaultTitle: 'Commandowl',
       favicon: './public/favicon.ico',
+      extendServer,
     },
   },
 };

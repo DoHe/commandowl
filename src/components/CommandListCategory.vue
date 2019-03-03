@@ -1,5 +1,13 @@
 <template>
   <aside class="menu">
+    <a
+      class="button is-rounded is-small is-pulled-right"
+      @click="setAdding"
+    >
+      <span class="is-size-5 has-text-weight-bold">
+        +
+      </span>
+    </a>
     <p class="menu-label">
       {{ categoryTitle }}
     </p>
@@ -50,6 +58,9 @@ export default {
   methods: {
     handleSelected(command) {
       this.$store.commit('setSelected', { category: this.categoryTitle, command });
+    },
+    setAdding() {
+      this.$store.commit('setAdding', this.categoryTitle);
     },
   },
 };

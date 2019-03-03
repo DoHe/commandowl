@@ -1,45 +1,57 @@
 import { MongoClient } from 'mongodb';
 import { createApp } from './main';
 
-const ls = {
-  command: 'ls',
-  shortDescription: 'Lists a directory',
-  longDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
-  exampleInput: 'ls ~',
-  exampleOutput: `Bilder     examples.desktop  Musik       python-workspace  Videos
-Dokumente  kdenlive          Öffentlich  Schreibtisch      Vorlagen
-Downloads  kubernetes        Programme   StudioProjects`,
-};
-
-export default context => new Promise(async (resolve) => {
-  const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
-  client.connect((err) => {
-    console.log(`error:${err}`);
-    console.log('Connected successfully to server');
-
-    const db = client.db('commandowl');
-
-    const collection = db.collection('commands');
-    /* collection.insert({ ls }, (err2, result) => {
-      console.log(err2);
-      console.log(`Inserted ${result.result.n} documents into the collection`);
-    }); */
-    collection.find({}).toArray((err3, docs) => {
-      console.log(err3);
-      console.log('Found the following records');
-      console.log(docs);
-    });
-    client.close();
+function storeCommandsForCategory(commands, category, store) {
+  return new Promise((resolve, reject) => {
+    commands
+      .then((cmds) => {
+        const cmdObj = {};
+        cmds.filter(cmd => cmd.name !== '_id').forEach((cmd) => {
+          // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+          delete cmd._id;
+          Object.assign(cmdObj, cmd);
+        });
+        store.commit('setCategory', { name: category, commands: cmdObj });
+        resolve();
+      })
+      .catch(err => reject(err));
   });
+}
+
+
+function readCommands(db, store) {
+  return new Promise((resolve, reject) => {
+    db.listCollections().toArray()
+      .then((categories) => {
+        const colls = categories.map((cat) => {
+          const collection = db.collection(cat.name);
+          const commands = collection.find({}).toArray();
+          return storeCommandsForCategory(commands, cat.name, store);
+        });
+        resolve(Promise.all(colls));
+      })
+      .catch(err => reject(err));
+  });
+}
+
+export default context => new Promise(async (resolve, reject) => {
   await createApp({
     context,
     afterApp({ app, store }) {
-      // eslint-disable-next-line no-param-reassign
-      context.rendered = () => {
-        // eslint-disable-next-line no-param-reassign
-        context.state = store.state;
-      };
-      resolve(app);
+      const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
+      client.connect()
+        .then(() => client.db('commandowl'))
+        .then(db => readCommands(db, store))
+        .then(() => {
+          // eslint-disable-next-line no-param-reassign
+          context.rendered = () => {
+            // eslint-disable-next-line no-param-reassign
+            context.state = store.state;
+          };
+          resolve(app);
+        })
+        .catch((err) => { console.log(err); reject(err); })
+        .finally(() => client.close());
     },
   });
 });
