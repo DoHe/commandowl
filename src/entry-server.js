@@ -23,7 +23,7 @@ function readCommands(db, store) {
   return new Promise((resolve, reject) => {
     db.listCollections().toArray()
       .then((categories) => {
-        const colls = categories.map((cat) => {
+        const colls = categories.filter(cat => cat.name !== 'system.indexes').map((cat) => {
           const collection = db.collection(cat.name);
           const commands = collection.find({}).toArray();
           return storeCommandsForCategory(commands, cat.name, store);
