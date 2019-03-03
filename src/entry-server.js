@@ -21,7 +21,6 @@ function storeCommandsForCategory(commands, category, store) {
 
 function readCommands(db, store) {
   return new Promise((resolve, reject) => {
-    console.log(db);
     db.listCollections().toArray()
       .then((categories) => {
         const colls = categories.map((cat) => {
@@ -39,7 +38,6 @@ export default context => new Promise(async (resolve, reject) => {
   await createApp({
     context,
     afterApp({ app, store }) {
-      console.log(process.env.VUE_APP_MONGODB_URI);
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
         // .then(() => client.db('commandowl'))
