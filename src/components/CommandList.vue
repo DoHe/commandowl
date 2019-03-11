@@ -8,7 +8,7 @@
       :selected="selected"
     />
     <a
-      class="button is-rounded"
+      class="button is-rounded add-button"
       @click="setAddingCategory"
     >
       Add category
@@ -41,8 +41,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bulma/sass/elements/button.sass";
+
 .ccontainer {
   padding: 20px;
+}
+
+.add-button {
+  margin-top: 20px;
 }
 
 .circle {

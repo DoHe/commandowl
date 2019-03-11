@@ -4,11 +4,10 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: '@import "node_modules/bulma/bulma.sass";',
+        data: `@import "node_modules/bulma/sass/utilities/_all.sass";
+               @import "node_modules/bulma/sass/base/_all.sass";`,
       },
     },
-  },
-  configureWebpack: {
   },
   pluginOptions: {
     ssr: {

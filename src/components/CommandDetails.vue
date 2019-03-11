@@ -1,5 +1,12 @@
 <template>
   <div class="ccontainer has-background-white">
+    <span
+      v-if="selectedCommand.command"
+      class="icon is-pulled-right interative-icon"
+      @click="setEditing"
+    >
+      <i class="icon-pencil" />
+    </span>
     <h5 class="title is-4">
       {{ selectedCommand.command }}
     </h5>
@@ -26,39 +33,49 @@ export default {
   name: 'CommandDetails',
   computed: {
     selectedCommand() {
-      return this.$store.getters.selectedCommand;
+      const { command } = this.$store.getters.selectedCommand;
+      return command || {};
+    },
+  },
+  methods: {
+    setEditing() {
+      this.$store.commit('setEditing', this.$store.getters.selectedCommand);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  .ccontainer {
-    padding: 10px;
-  }
+@import "~bulma/sass/elements/icon.sass";
+@import "@/assets/styles.scss";
+@import "@/assets/variables.scss";
 
-  .command-container {
-    padding-top: 20px;
-  }
+.ccontainer {
+  padding: 10px;
+}
 
-  .command {
-    background-color: $dark;
-    padding: 20px;
-  }
+.command-container {
+  padding-top: 20px;
+}
 
-  .command-input {
-    padding-left: 5px;
-  }
+.command {
+  background-color: $dark;
+  padding: 20px;
+}
 
-  .command-input,
-  .command-output {
-    overflow-x: auto;
-    max-width: 70%;
-  }
+.command-input {
+  padding-left: 5px;
+}
 
-  .pre {
-    white-space: pre;
-    font-family: monospace;
-    max-width: 40px;
-  }
+.command-input,
+.command-output {
+  overflow-x: auto;
+  max-width: 70%;
+}
+
+.pre {
+  white-space: pre;
+  font-family: monospace;
+  max-width: 40px;
+}
 </style>

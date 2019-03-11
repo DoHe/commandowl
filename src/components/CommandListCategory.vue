@@ -1,13 +1,8 @@
 <template>
   <aside class="menu">
-    <a
-      class="button is-rounded is-small is-pulled-right"
-      @click="setAdding"
-    >
-      <span class="is-size-5 has-text-weight-bold">
-        +
-      </span>
-    </a>
+    <span class="icon is-pulled-right interative-icon" @click="setAdding">
+      <i class="icon-plus" />
+    </span>
     <p class="menu-label">
       {{ categoryTitle }}
     </p>
@@ -65,3 +60,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~bulma/sass/elements/icon.sass";
+@import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/components/menu.sass";
+@import "@/assets/styles.scss";
+@import "@/assets/variables.scss";
+</style>

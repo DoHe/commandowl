@@ -59,6 +59,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bulma/sass/elements/box.sass";
+@import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/elements/form.sass";
+@import "~bulma/sass/components/modal.sass";
+
 .form-container {
   max-width: 100%;
 }

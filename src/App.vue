@@ -7,6 +7,7 @@
       Commandowl
     </h1>
     <AddCommand />
+    <EditCommand />
     <AddCategory />
     <div class="columns">
       <div class="column is-two-fifths">
@@ -23,6 +24,7 @@
 import CommandDetails from '@/components/CommandDetails.vue';
 import CommandList from '@/components/CommandList.vue';
 import AddCommand from '@/components/AddCommand.vue';
+import EditCommand from '@/components/EditCommand.vue';
 import AddCategory from '@/components/AddCategory.vue';
 
 export default {
@@ -32,6 +34,7 @@ export default {
     CommandList,
     AddCommand,
     AddCategory,
+    EditCommand
   },
   computed: {
     selectedCommand() {
@@ -51,6 +54,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bulma/sass/grid/columns.sass";
+@import "~bulma/sass/layout/section.sass";
+@import "~bulma/sass/elements/image.sass";
+@import "~bulma/sass/elements/title.sass";
+
 html {
   height: 100%;
 }

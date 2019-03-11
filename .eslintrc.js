@@ -11,6 +11,7 @@ module.exports = {
     "rules": {
         'import/prefer-default-export': false,
         'no-new': 0,
+        'no-underscore-dangle': 0,
         "vue/max-attributes-per-line": [2, {
             "singleline": 3,
             "multiline": {

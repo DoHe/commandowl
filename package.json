@@ -2,14 +2,11 @@
   "name": "commandowl",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "10"
-  },
   "scripts": {
-    "heroku-postbuild": "VUE_APP_MONGODB_URI=$MONGODB_URI vue-cli-service ssr:build",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "heroku-postbuild": "VUE_APP_MONGODB_URI=$MONGODB_URI vue-cli-service ssr:build",
     "ssr:build": "vue-cli-service ssr:build",
     "ssr:serve": "vue-cli-service ssr:serve",
     "ssr:start": "cross-env NODE_ENV=production vue-cli-service ssr:serve --mode production"
@@ -62,5 +59,8 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "engines": {
+    "node": "10"
+  }
 }

@@ -1,9 +1,14 @@
 <template>
   <CommandDialog
-    v-if="this.$store.state.adding"
-    cta="Add"
-    @canceled="stopAdding"
-    @done="add"
+    v-if="categoryToEdit"
+    cta="Edit"
+    :command="commandToEdit.command"
+    :short-description="commandToEdit.shortDescription"
+    :long-description="commandToEdit.longDescription"
+    :example-input="commandToEdit.exampleInput"
+    :example-output="commandToEdit.exampleOutput"
+    @canceled="stopEditing"
+    @done="edit"
   />
 </template>
 
@@ -11,14 +16,23 @@
 import CommandDialog from '@/components/CommandDialog.vue';
 
 export default {
-  name: 'AddCommand',
+  name: 'EditCommand',
   components: {
     CommandDialog,
   },
+  computed: {
+    commandToEdit() {
+      const { command } = this.$store.state.editing;
+      return command || {};
+    },
+    categoryToEdit() {
+      return this.$store.state.editing.category;
+    },
+  },
   methods: {
-    add(cmd) {
+    edit(cmd) {
       const payload = {
-        category: this.$store.state.adding,
+        category: this.$store.state.editing.category,
         command: cmd,
       };
       const opts = {
@@ -34,13 +48,13 @@ export default {
         .then(response => response.json())
         .then((j) => {
           console.log(j);
-          this.$store.commit('addCommand', { category: this.$store.state.adding, command: cmd });
-          this.stopAdding();
+          this.$store.commit('addCommand', { category: this.categoryToEdit, command: cmd });
+          this.stopEditing();
         })
         .catch(err => console.log(err));
     },
-    stopAdding() {
-      this.$store.commit('setAdding', '');
+    stopEditing() {
+      this.$store.commit('setEditing', {});
     },
   },
 };
