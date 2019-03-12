@@ -11,6 +11,7 @@ export default function createStore() {
       adding: '',
       editing: {},
       addingCategory: false,
+      search: '',
     },
     mutations: {
       setSelected(state, selected) {
@@ -28,6 +29,10 @@ export default function createStore() {
       setEditing(state, editing) {
         // eslint-disable-next-line no-param-reassign
         state.editing = editing;
+      },
+      setSearch(state, search) {
+        // eslint-disable-next-line no-param-reassign
+        state.search = search;
       },
       setAddingCategory(state, adding) {
         // eslint-disable-next-line no-param-reassign

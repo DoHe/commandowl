@@ -34,7 +34,7 @@ export default {
     CommandList,
     AddCommand,
     AddCategory,
-    EditCommand
+    EditCommand,
   },
   computed: {
     selectedCommand() {
@@ -56,6 +56,7 @@ export default {
 <style lang="scss">
 @import "~bulma/sass/grid/columns.sass";
 @import "~bulma/sass/layout/section.sass";
+@import "~bulma/sass/elements/container.sass";
 @import "~bulma/sass/elements/image.sass";
 @import "~bulma/sass/elements/title.sass";
 

@@ -1,5 +1,11 @@
 <template>
   <div class="ccontainer has-background-white">
+    <input
+      v-model="search"
+      class="input is-rounded"
+      type="text"
+      name="search"
+    >
     <command-list-category
       v-for="(category, categoryTitle) in commands"
       :key="categoryTitle"
@@ -31,6 +37,14 @@ export default {
     selected() {
       return this.$store.state.selected;
     },
+    search: {
+      get() {
+        return this.$store.state.search;
+      },
+      set(value) {
+        this.$store.commit('setSearch', value);
+      },
+    },
   },
   methods: {
     setAddingCategory() {
@@ -42,6 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/elements/form.sass";
 
 .ccontainer {
   padding: 20px;
@@ -49,17 +64,5 @@ export default {
 
 .add-button {
   margin-top: 20px;
-}
-
-.circle {
-  display: table-cell;
-  height: 20px;
-  width: 20px;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%;
-  /*make it pretty*/
-  background: #000;
-  color: #fff;
 }
 </style>

@@ -65,6 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bulma/sass/elements/icon.sass";
+@import "~bulma/sass/elements/title.sass";
 @import "@/assets/styles.scss";
 @import "@/assets/variables.scss";
 

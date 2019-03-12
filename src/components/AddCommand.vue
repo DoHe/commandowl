@@ -23,7 +23,6 @@ export default {
         command: cmd,
       };
       postJSON('/add_command', payload)
-        .then(response => response.json())
         .then((j) => {
           console.log(j);
           this.$store.commit('addCommand', { category: this.$store.state.adding, command: cmd });

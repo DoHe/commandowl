@@ -38,7 +38,6 @@ export default {
         oldCommand: this.commandToEdit,
       };
       postJSON('/edit_command', payload)
-        .then(response => response.json())
         .then((j) => {
           console.log(j);
           this.$store.commit('editCommand', {
