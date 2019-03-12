@@ -3,6 +3,13 @@
     <span
       v-if="selectedCommand.command"
       class="icon is-pulled-right interative-icon"
+      @click="deleteCommand"
+    >
+      <i class="icon-remove" />
+    </span>
+    <span
+      v-if="selectedCommand.command"
+      class="icon is-pulled-right interative-icon"
       @click="setEditing"
     >
       <i class="icon-pencil" />
@@ -29,6 +36,8 @@
 </template>
 
 <script>
+import postJSON from '../helpers';
+
 export default {
   name: 'CommandDetails',
   computed: {
@@ -40,6 +49,15 @@ export default {
   methods: {
     setEditing() {
       this.$store.commit('setEditing', this.$store.getters.selectedCommand);
+    },
+    deleteCommand() {
+      const { category, command } = this.$store.getters.selectedCommand;
+      postJSON('/delete_command', { category, command })
+        .then(() => {
+          this.$store.commit('setSelected', {});
+          this.$store.commit('deleteCommand', { category, command });
+        })
+        .catch(err => console.log(err));
     },
   },
 };

@@ -38,6 +38,19 @@ export default function createStore() {
         state.commands[category] = state.commands[category] || {};
         Vue.set(state.commands[category], command.command, command);
       },
+      editCommand(state, { category, oldCommand, newCommand }) {
+        if (!state.commands[category]) {
+          return;
+        }
+        Vue.delete(state.commands[category], oldCommand.command);
+        Vue.set(state.commands[category], newCommand.command, newCommand);
+      },
+      deleteCommand(state, { category, command }) {
+        if (!state.commands[category]) {
+          return;
+        }
+        Vue.delete(state.commands[category], command.command);
+      },
       addCategory(state, category) {
         Vue.set(state.commands, category, {});
       },
@@ -51,7 +64,7 @@ export default function createStore() {
         if (category) {
           const command = category[state.selected.command];
           if (command) {
-            return { category, command };
+            return { category: state.selected.category, command };
           }
         }
         return {};

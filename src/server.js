@@ -13,6 +13,15 @@ function isCommand(body) {
   return true;
 }
 
+function isEditCommand(body) {
+  const { category, oldCommand, newCommand } = body;
+  console.log(category);
+  console.log(oldCommand);
+  console.log(newCommand);
+  return (isCommand({ category, command: oldCommand })
+          && isCommand({ category, command: newCommand }));
+}
+
 function isCategory(body) {
   const { category } = body;
   if (!category || typeof category !== 'string') {
@@ -31,6 +40,22 @@ function insertCommand(client, toInsert) {
   const { category, command } = toInsert;
   const collection = db.collection(category);
   return collection.insertOne({ [command.command]: command });
+}
+
+function editCommand(client, toEdit) {
+  const db = client.db(process.env.VUE_APP_MONBODB_DB_NAME);
+  const { category, newCommand, oldCommand } = toEdit;
+  const collection = db.collection(category);
+  return collection
+    .remove({ [oldCommand.command]: oldCommand }, true)
+    .then(() => collection.insertOne({ [newCommand.command]: newCommand }));
+}
+
+function deleteCommand(client, toDelete) {
+  const db = client.db(process.env.VUE_APP_MONBODB_DB_NAME);
+  const { category, command } = toDelete;
+  const collection = db.collection(category);
+  return collection.remove({ [command.command]: command }, true);
 }
 
 function insertCategory(client, toInsert) {
@@ -54,6 +79,36 @@ module.exports.extendServer = (app) => {
       client.connect()
         .then(() => insertCommand(client, req.body))
         .then(result => res.status(200).json({ message: `Added ${result.insertedCount} commands` }))
+        .catch(err => errorResponse(err, res))
+        .finally(() => client.close());
+    },
+  );
+
+  app.post(
+    '/edit_command', (req, res) => {
+      if (!isEditCommand(req.body)) {
+        errorResponse(new Error('invalid command'), res, 422, 'Invalid command');
+        return;
+      }
+      const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
+      client.connect()
+        .then(() => editCommand(client, req.body))
+        .then(result => res.status(200).json({ message: `Edited ${result.modifiedCount} commands` }))
+        .catch(err => errorResponse(err, res))
+        .finally(() => client.close());
+    },
+  );
+
+  app.post(
+    '/delete_command', (req, res) => {
+      if (!isCommand(req.body)) {
+        errorResponse(new Error('invalid command'), res, 422, 'Invalid command');
+        return;
+      }
+      const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
+      client.connect()
+        .then(() => deleteCommand(client, req.body))
+        .then(result => res.status(200).json({ message: `Deleted ${result.deletedCount} commands` }))
         .catch(err => errorResponse(err, res))
         .finally(() => client.close());
     },

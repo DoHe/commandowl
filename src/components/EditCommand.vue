@@ -14,6 +14,7 @@
 
 <script>
 import CommandDialog from '@/components/CommandDialog.vue';
+import postJSON from '../helpers';
 
 export default {
   name: 'EditCommand',
@@ -32,23 +33,19 @@ export default {
   methods: {
     edit(cmd) {
       const payload = {
-        category: this.$store.state.editing.category,
-        command: cmd,
+        category: this.categoryToEdit,
+        newCommand: cmd,
+        oldCommand: this.commandToEdit,
       };
-      const opts = {
-        credentials: 'same-origin',
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      };
-      fetch('/add_command', opts)
+      postJSON('/edit_command', payload)
         .then(response => response.json())
         .then((j) => {
           console.log(j);
-          this.$store.commit('addCommand', { category: this.categoryToEdit, command: cmd });
+          this.$store.commit('editCommand', {
+            category: this.categoryToEdit,
+            newCommand: cmd,
+            oldCommand: this.commandToEdit,
+          });
           this.stopEditing();
         })
         .catch(err => console.log(err));

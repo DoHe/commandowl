@@ -9,6 +9,7 @@
 
 <script>
 import CommandDialog from '@/components/CommandDialog.vue';
+import postJSON from '../helpers';
 
 export default {
   name: 'AddCommand',
@@ -21,16 +22,7 @@ export default {
         category: this.$store.state.adding,
         command: cmd,
       };
-      const opts = {
-        credentials: 'same-origin',
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      };
-      fetch('/add_command', opts)
+      postJSON('/add_command', payload)
         .then(response => response.json())
         .then((j) => {
           console.log(j);
