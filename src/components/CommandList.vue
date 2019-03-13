@@ -1,11 +1,19 @@
 <template>
   <div class="ccontainer has-background-white">
-    <input
-      v-model="search"
-      class="input is-rounded"
-      type="text"
-      name="search"
-    >
+    <div class="field">
+      <p class="control has-icons-right">
+        <input
+          v-model="search"
+          class="input is-rounded"
+          type="text"
+          name="search"
+          placeholder="Filter"
+        >
+        <span class="icon is-small is-right">
+          <i class="icon-search" />
+        </span>
+      </p>
+    </div>
     <command-list-category
       v-for="(category, categoryTitle) in commands"
       :key="categoryTitle"
@@ -57,6 +65,9 @@ export default {
 <style lang="scss" scoped>
 @import "~bulma/sass/elements/button.sass";
 @import "~bulma/sass/elements/form.sass";
+@import "~bulma/sass/elements/icon.sass";
+@import "@/assets/styles.scss";
+@import "@/assets/variables.scss";
 
 .ccontainer {
   padding: 20px;

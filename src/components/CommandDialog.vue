@@ -1,13 +1,14 @@
 <template>
-  <div class="modal is-active">
+  <div class="modal is-active" @keyup.escape="cancel">
     <div class="modal-background" @click="cancel" />
     <div class="modal-content">
-      <div class="container box form-container">
+      <div class="container box form-container" @keyup.enter="done">
         <div class="field">
           <label class="label">Command</label>
           <div class="control">
             <input
               v-model="dcommand"
+              v-focus
               class="input"
               type="text"
               placeholder="Command"

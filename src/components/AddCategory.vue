@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.$store.state.addingCategory" class="modal is-active">
+  <div v-if="this.$store.state.addingCategory" class="modal is-active" @keyup.escape="stopAdding">
     <div class="modal-background" @click="stopAdding" />
     <div class="modal-content">
       <div class="container box form-container">
@@ -8,9 +8,11 @@
           <div class="control">
             <input
               v-model="category"
+              v-focus
               class="input"
               type="text"
               placeholder="Category"
+              @keyup.enter="add"
             >
           </div>
         </div>

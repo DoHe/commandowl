@@ -11,6 +11,12 @@ export async function createApp({
 } = {}) {
   await beforeApp({ context });
 
+  Vue.directive('focus', {
+    inserted(el) {
+      el.focus();
+    },
+  });
+
   const store = createStore();
   const app = new Vue({
     store,
