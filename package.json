@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@akryum/vue-cli-plugin-ssr": "0.5.0",
-    "@vue/cli-plugin-babel": "3.5.1",
+    "@vue/cli-plugin-babel": "3.5.3",
     "@vue/cli-plugin-eslint": "3.5.1",
-    "@vue/cli-service": "3.5.1",
+    "@vue/cli-service": "3.5.3",
     "babel-eslint": "10.0.1",
     "eslint": "5.15.3",
     "eslint-config-airbnb": "17.1.0",
