@@ -1,7 +1,5 @@
 language: node_js
-python:
+node_js:
   - "10"
-install:
-  - yarn
 script:
 - yarn test:unit
