@@ -19,13 +19,13 @@
     </h5>
     <p>{{ selectedCommand.longDescription }}</p>
 
-    <div v-if="selectedCommand.exampleInput" class="command-container">
+    <div v-if="exampleInput" class="command-container">
       <h6 class="title is-5">
         Example
       </h6>
       <div class="command has-text-light">
         <p class="command-input is-italic">
-          <span class="pre">$ {{ selectedCommand.exampleInput }}</span>
+          <span class="pre">$ {{ exampleInput }}</span>
         </p>
         <p class="command-output">
           <span class="pre">{{ selectedCommand.exampleOutput }}</span>
@@ -44,6 +44,13 @@ export default {
     selectedCommand() {
       const { command } = this.$store.getters.selectedCommand;
       return command || {};
+    },
+    exampleInput() {
+      const cmd = this.selectedCommand;
+      if (!cmd.exampleOutput) {
+        return cmd.exampleOutput;
+      }
+      return cmd.exampleOutput;
     },
   },
   methods: {

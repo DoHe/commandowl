@@ -5,8 +5,11 @@
     </span>
     <p class="menu-label">
       {{ categoryTitle }}
+      <span class="icon interative-icon" @click="toggleVisibility">
+        <i :class="`icon-chevron-${visible ? 'down' : 'up'}`" />
+      </span>
     </p>
-    <ul class="menu-list">
+    <ul v-if="visible" class="menu-list">
       <li
         v-for="command in category"
         :key="command.command"
@@ -45,6 +48,11 @@ export default {
       default: () => ({}),
     },
   },
+  data() {
+    return {
+      visible: true,
+    };
+  },
   computed: {
     selected() {
       return this.$store.state.selected;
@@ -56,6 +64,9 @@ export default {
     },
     setAdding() {
       this.$store.commit('setAdding', this.categoryTitle);
+    },
+    toggleVisibility() {
+      this.visible = !this.visible;
     },
   },
 };

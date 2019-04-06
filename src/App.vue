@@ -1,23 +1,25 @@
 <template>
-  <div id="app" class="container is-fluid">
-    <figure class="image is-32x32 is-pulled-left">
-      <img src="./assets/icon.svg">
-    </figure>
-    <h1 class="title">
-      Commandowl
-    </h1>
-    <AddCommand />
-    <EditCommand />
-    <AddCategory />
-    <div class="columns">
-      <div class="column is-two-fifths">
-        <CommandList />
-      </div>
-      <div class="column">
-        <CommandDetails :command="selectedCommand" />
+  <section class="section">
+    <div id="app" class="container is-fluid">
+      <figure class="image is-32x32 is-pulled-left">
+        <img src="./assets/icon.svg">
+      </figure>
+      <h1 class="title">
+        Commandowl
+      </h1>
+      <AddCommand />
+      <EditCommand />
+      <AddCategory />
+      <div class="columns">
+        <div class="column is-two-fifths">
+          <CommandList />
+        </div>
+        <div class="column">
+          <CommandDetails :command="selectedCommand" />
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
