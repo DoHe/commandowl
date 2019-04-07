@@ -38,6 +38,20 @@
 <script>
 import postJSON from '../helpers';
 
+function formatInput(cmd) {
+  if (!cmd.exampleInput || !cmd.variables || !Object.keys(cmd.variables).length) {
+    return cmd.exampleInput;
+  }
+
+  let replaced = cmd.exampleInput;
+  Object.keys(cmd.variables).forEach((varKey) => {
+    replaced = replaced.replace(`{{${varKey}}}`, cmd.variables[varKey]);
+  });
+
+  return replaced;
+}
+
+export { formatInput };
 export default {
   name: 'CommandDetails',
   computed: {
@@ -46,11 +60,7 @@ export default {
       return command || {};
     },
     exampleInput() {
-      const cmd = this.selectedCommand;
-      if (!cmd.exampleOutput) {
-        return cmd.exampleOutput;
-      }
-      return cmd.exampleOutput;
+      return formatInput(this.selectedCommand);
     },
   },
   methods: {
