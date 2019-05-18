@@ -13,7 +13,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "bulma": "0.7.4",
+    "bulma": "0.7.5",
     "eslint-import-resolver-webpack": "0.11.1",
     "express": "4.17.0",
     "mongodb": "3.2.5",
