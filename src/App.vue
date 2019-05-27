@@ -1,6 +1,6 @@
 <template>
-  <section class="section">
-    <div id="app" class="container is-fluid">
+  <section id="app" class="section">
+    <div class="container is-fluid">
       <figure class="image is-32x32 is-pulled-left">
         <img src="./assets/icon.svg">
       </figure>

@@ -38,14 +38,14 @@
 <script>
 import postJSON from '../helpers';
 
-function formatInput(cmd) {
+function formatInput(cmd, store) {
   if (!cmd.exampleInput || !cmd.variables || !Object.keys(cmd.variables).length) {
     return cmd.exampleInput;
   }
 
   let replaced = cmd.exampleInput;
-  Object.keys(cmd.variables).forEach((varKey) => {
-    replaced = replaced.replace(`{{${varKey}}}`, cmd.variables[varKey]);
+  Object.keys(store.state.variables).forEach((varKey) => {
+    replaced = replaced.replace(`{{${varKey}}}`, store.state.variables[varKey]);
   });
 
   return replaced;
@@ -74,7 +74,7 @@ export default {
           this.$store.commit('setSelected', {});
           this.$store.commit('deleteCommand', { category, command });
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err)); // eslint-disable-line no-console
     },
   },
 };

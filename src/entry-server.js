@@ -23,12 +23,27 @@ function readCommands(db, store) {
   return new Promise((resolve, reject) => {
     db.listCollections().toArray()
       .then((categories) => {
-        const colls = categories.filter(cat => cat.name !== 'system.indexes').map((cat) => {
+        const colls = categories.filter(cat => ![
+          'system.indexes',
+          '__variables',
+        ].includes(cat.name)).map((cat) => {
           const collection = db.collection(cat.name);
           const commands = collection.find({}).toArray();
           return storeCommandsForCategory(commands, cat.name, store);
         });
         resolve(Promise.all(colls));
+      })
+      .catch(err => reject(err));
+  });
+}
+
+function readVariables(db, store) {
+  return new Promise((resolve, reject) => {
+    const collection = db.collection('__variables');
+    collection.find({}).toArray()
+      .then((variables) => {
+        store.commit('setVariables', variables);
+        resolve();
       })
       .catch(err => reject(err));
   });
@@ -41,7 +56,7 @@ export default context => new Promise(async (resolve, reject) => {
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
         .then(() => client.db(process.env.VUE_APP_MONBODB_DB_NAME))
-        .then(db => readCommands(db, store))
+        .then(db => Promise.all([readCommands(db, store), readVariables(db, store)]))
         .then(() => {
           // eslint-disable-next-line no-param-reassign
           context.rendered = () => {
@@ -50,7 +65,7 @@ export default context => new Promise(async (resolve, reject) => {
           };
           resolve(app);
         })
-        .catch((err) => { console.log(err); reject(err); })
+        .catch((err) => { console.log(err); reject(err); }) // eslint-disable-line no-console
         .finally(() => client.close());
     },
   });

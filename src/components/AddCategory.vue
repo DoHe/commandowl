@@ -46,11 +46,12 @@ export default {
     add() {
       postJSON('/add_category', { category: this.category })
         .then((j) => {
+          // eslint-disable-next-line no-console
           console.log(j);
           this.$store.commit('addCategory', this.category);
           this.stopAdding();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err)); // eslint-disable-line no-console
     },
     stopAdding() {
       this.$store.commit('setAddingCategory', false);
@@ -63,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 @import "~bulma/sass/elements/box.sass";
 @import "~bulma/sass/elements/button.sass";
-@import "~bulma/sass/elements/form.sass";
+@import "~bulma/sass/form/_all.sass";
 @import "~bulma/sass/components/modal.sass";
 
 .form-container {

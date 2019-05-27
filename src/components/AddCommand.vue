@@ -24,11 +24,12 @@ export default {
       };
       postJSON('/add_command', payload)
         .then((j) => {
+          // eslint-disable-next-line no-console
           console.log(j);
           this.$store.commit('addCommand', { category: this.$store.state.adding, command: cmd });
           this.stopAdding();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err)); // eslint-disable-line no-console
     },
     stopAdding() {
       this.$store.commit('setAdding', '');
@@ -40,7 +41,7 @@ export default {
 <style lang="scss" scoped>
 @import "~bulma/sass/elements/box.sass";
 @import "~bulma/sass/elements/button.sass";
-@import "~bulma/sass/elements/form.sass";
+@import "~bulma/sass/form/_all.sass";
 @import "~bulma/sass/components/modal.sass";
 
 .form-container {

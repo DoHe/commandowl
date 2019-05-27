@@ -12,34 +12,32 @@ export default function createStore() {
       editing: {},
       addingCategory: false,
       search: '',
+      varaibles: [],
     },
     mutations: {
+      /* eslint-disable no-param-reassign */
       setSelected(state, selected) {
-        // eslint-disable-next-line no-param-reassign
         state.selected = selected;
       },
       setCategory(state, { name, commands }) {
-        // eslint-disable-next-line no-param-reassign
         state.commands[name] = commands;
       },
       setAdding(state, adding) {
-        // eslint-disable-next-line no-param-reassign
         state.adding = adding;
       },
       setEditing(state, editing) {
-        // eslint-disable-next-line no-param-reassign
         state.editing = editing;
       },
       setSearch(state, search) {
-        // eslint-disable-next-line no-param-reassign
         state.search = search;
       },
       setAddingCategory(state, adding) {
-        // eslint-disable-next-line no-param-reassign
         state.addingCategory = adding;
       },
+      setVariables(state, variables) {
+        state.variables = variables;
+      },
       addCommand(state, { category, command }) {
-        // eslint-disable-next-line no-param-reassign
         state.commands[category] = state.commands[category] || {};
         Vue.set(state.commands[category], command.command, command);
       },
@@ -59,6 +57,7 @@ export default function createStore() {
       addCategory(state, category) {
         Vue.set(state.commands, category, {});
       },
+      /* eslint-enable no-param-reassign */
     },
     actions: {
 

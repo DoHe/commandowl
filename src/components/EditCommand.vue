@@ -39,6 +39,7 @@ export default {
       };
       postJSON('/edit_command', payload)
         .then((j) => {
+          // eslint-disable-next-line no-console
           console.log(j);
           this.$store.commit('editCommand', {
             category: this.categoryToEdit,
@@ -47,7 +48,7 @@ export default {
           });
           this.stopEditing();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err)); // eslint-disable-line no-console
     },
     stopEditing() {
       this.$store.commit('setEditing', {});
@@ -59,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 @import "~bulma/sass/elements/box.sass";
 @import "~bulma/sass/elements/button.sass";
-@import "~bulma/sass/elements/form.sass";
+@import "~bulma/sass/form/_all.sass";
 @import "~bulma/sass/components/modal.sass";
 
 .form-container {
