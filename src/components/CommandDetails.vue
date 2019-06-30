@@ -39,7 +39,7 @@
 import postJSON from '../helpers';
 
 function formatInput(cmd, store) {
-  if (!cmd.exampleInput || !cmd.variables || !Object.keys(cmd.variables).length) {
+  if (!cmd.exampleInput) {
     return cmd.exampleInput;
   }
 

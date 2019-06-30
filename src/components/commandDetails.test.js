@@ -11,7 +11,9 @@ describe('CommandDetails', () => {
 
   beforeEach(() => {
     store = new Vuex.Store({
-      state: {},
+      state: {
+        variables: {},
+      },
       getters: {
         selectedCommand: () => ({ command: {} }),
       },
@@ -28,6 +30,19 @@ describe('CommandDetails', () => {
 });
 
 describe('formatInput', () => {
+  let store;
+
+  beforeEach(() => {
+    store = new Vuex.Store({
+      state: {
+        variables: { var1: 'VALUE' },
+      },
+      getters: {
+        selectedCommand: () => ({ command: {} }),
+      },
+    });
+  });
+
   it('Handles empty object', () => {
     const input = formatInput({});
     expect(input).toBe(undefined);
@@ -39,12 +54,12 @@ describe('formatInput', () => {
   });
 
   it('Replaces vars', () => {
-    const input = formatInput({ exampleInput: 'ls {{var1}}', variables: { var1: 'VALUE' } });
+    const input = formatInput({ exampleInput: 'ls {{var1}}' }, store);
     expect(input).toStrictEqual('ls VALUE');
   });
 
   it('Ignores single braces', () => {
-    const input = formatInput({ exampleInput: 'ls {var1}', variables: { var1: 'VALUE' } });
+    const input = formatInput({ exampleInput: 'ls {var1}' }, store);
     expect(input).toStrictEqual('ls {var1}');
   });
 });
