@@ -16,7 +16,7 @@
     "bulma": "0.7.5",
     "eslint-import-resolver-webpack": "0.11.1",
     "express": "4.17.1",
-    "mongodb": "3.2.6",
+    "mongodb": "3.2.7",
     "vue": "2.6.10",
     "vue-router": "3.0.6",
     "vue-server-renderer": "2.6.10",
