@@ -23,7 +23,7 @@
     "vuex": "3.1.1"
   },
   "devDependencies": {
-    "@akryum/vue-cli-plugin-ssr": "0.5.0",
+    "@akryum/vue-cli-plugin-ssr": "0.6.0",
     "@vue/cli-plugin-babel": "3.12.1",
     "@vue/cli-plugin-eslint": "3.12.1",
     "@vue/cli-plugin-unit-jest": "3.12.1",
