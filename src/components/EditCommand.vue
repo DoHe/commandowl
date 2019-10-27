@@ -48,7 +48,7 @@ export default {
           });
           this.stopEditing();
         })
-        .catch(err => console.log(err)); // eslint-disable-line no-console
+        .catch((err) => console.log(err)); // eslint-disable-line no-console
     },
     stopEditing() {
       this.$store.commit('setEditing', {});

@@ -51,7 +51,7 @@ export default {
           this.$store.commit('addCategory', this.category);
           this.stopAdding();
         })
-        .catch(err => console.log(err)); // eslint-disable-line no-console
+        .catch((err) => console.log(err)); // eslint-disable-line no-console
     },
     stopAdding() {
       this.$store.commit('setAddingCategory', false);

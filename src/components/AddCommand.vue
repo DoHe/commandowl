@@ -29,7 +29,7 @@ export default {
           this.$store.commit('addCommand', { category: this.$store.state.adding, command: cmd });
           this.stopAdding();
         })
-        .catch(err => console.log(err)); // eslint-disable-line no-console
+        .catch((err) => console.log(err)); // eslint-disable-line no-console
     },
     stopAdding() {
       this.$store.commit('setAdding', '');
