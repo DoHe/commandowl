@@ -8,5 +8,5 @@ export default function postJSON(url, payload) {
     },
     body: JSON.stringify(payload),
   };
-  return fetch(url, opts).then(response => response.json());
+  return fetch(url, opts).then((response) => response.json());
 }

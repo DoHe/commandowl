@@ -19,7 +19,7 @@ function isEditCommand(body) {
   console.log(oldCommand);
   console.log(newCommand);
   return (isCommand({ category, command: oldCommand })
-          && isCommand({ category, command: newCommand }));
+    && isCommand({ category, command: newCommand }));
 }
 
 function isCategory(body) {
@@ -78,8 +78,8 @@ module.exports.extendServer = (app) => {
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
         .then(() => insertCommand(client, req.body))
-        .then(result => res.status(200).json({ message: `Added ${result.insertedCount} commands` }))
-        .catch(err => errorResponse(err, res))
+        .then((result) => res.status(200).json({ message: `Added ${result.insertedCount} commands` }))
+        .catch((err) => errorResponse(err, res))
         .finally(() => client.close());
     },
   );
@@ -93,8 +93,8 @@ module.exports.extendServer = (app) => {
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
         .then(() => editCommand(client, req.body))
-        .then(result => res.status(200).json({ message: `Edited ${result.modifiedCount} commands` }))
-        .catch(err => errorResponse(err, res))
+        .then((result) => res.status(200).json({ message: `Edited ${result.modifiedCount} commands` }))
+        .catch((err) => errorResponse(err, res))
         .finally(() => client.close());
     },
   );
@@ -108,8 +108,8 @@ module.exports.extendServer = (app) => {
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
         .then(() => deleteCommand(client, req.body))
-        .then(result => res.status(200).json({ message: `Deleted ${result.deletedCount} commands` }))
-        .catch(err => errorResponse(err, res))
+        .then((result) => res.status(200).json({ message: `Deleted ${result.deletedCount} commands` }))
+        .catch((err) => errorResponse(err, res))
         .finally(() => client.close());
     },
   );
@@ -123,8 +123,8 @@ module.exports.extendServer = (app) => {
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
         .then(() => insertCategory(client, req.body))
-        .then(result => res.status(200).json({ message: `Added ${result.insertedCount} categories` }))
-        .catch(err => errorResponse(err, res))
+        .then((result) => res.status(200).json({ message: `Added ${result.insertedCount} categories` }))
+        .catch((err) => errorResponse(err, res))
         .finally(() => client.close());
     },
   );
