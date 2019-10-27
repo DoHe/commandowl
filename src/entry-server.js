@@ -6,7 +6,7 @@ function storeCommandsForCategory(commands, category, store) {
     commands
       .then((cmds) => {
         const cmdObj = {};
-        cmds.filter(cmd => cmd.name !== '_id').forEach((cmd) => {
+        cmds.filter((cmd) => cmd.name !== '_id').forEach((cmd) => {
           // eslint-disable-next-line no-underscore-dangle, no-param-reassign
           delete cmd._id;
           Object.assign(cmdObj, cmd);
@@ -14,7 +14,7 @@ function storeCommandsForCategory(commands, category, store) {
         store.commit('setCategory', { name: category, commands: cmdObj });
         resolve();
       })
-      .catch(err => reject(err));
+      .catch((err) => reject(err));
   });
 }
 
@@ -23,7 +23,7 @@ function readCommands(db, store) {
   return new Promise((resolve, reject) => {
     db.listCollections().toArray()
       .then((categories) => {
-        const colls = categories.filter(cat => ![
+        const colls = categories.filter((cat) => ![
           'system.indexes',
           '__variables',
         ].includes(cat.name)).map((cat) => {
@@ -33,7 +33,7 @@ function readCommands(db, store) {
         });
         resolve(Promise.all(colls));
       })
-      .catch(err => reject(err));
+      .catch((err) => reject(err));
   });
 }
 
@@ -45,18 +45,19 @@ function readVariables(db, store) {
         store.commit('setVariables', variables);
         resolve();
       })
-      .catch(err => reject(err));
+      .catch((err) => reject(err));
   });
 }
 
-export default context => new Promise(async (resolve, reject) => {
+// eslint-disable-next-line no-async-promise-executor
+export default (context) => new Promise(async (resolve, reject) => {
   await createApp({
     context,
     afterApp({ app, store }) {
       const client = new MongoClient(process.env.VUE_APP_MONGODB_URI);
       client.connect()
         .then(() => client.db(process.env.VUE_APP_MONBODB_DB_NAME))
-        .then(db => Promise.all([readCommands(db, store), readVariables(db, store)]))
+        .then((db) => Promise.all([readCommands(db, store), readVariables(db, store)]))
         .then(() => {
           // eslint-disable-next-line no-param-reassign
           context.rendered = () => {

@@ -74,7 +74,7 @@ export default {
           this.$store.commit('setSelected', {});
           this.$store.commit('deleteCommand', { category, command });
         })
-        .catch(err => console.log(err)); // eslint-disable-line no-console
+        .catch((err) => console.log(err)); // eslint-disable-line no-console
     },
   },
 };

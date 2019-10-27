@@ -5,8 +5,8 @@ import createStore from './store';
 Vue.config.productionTip = false;
 
 export async function createApp({
-  beforeApp = () => {},
-  afterApp = () => {},
+  beforeApp = () => { },
+  afterApp = () => { },
   context,
 } = {}) {
   await beforeApp({ context });
@@ -20,7 +20,7 @@ export async function createApp({
   const store = createStore();
   const app = new Vue({
     store,
-    render: h => h(App),
+    render: (h) => h(App),
   });
 
   const result = {
