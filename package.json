@@ -40,7 +40,7 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-vue": "^5.2.3",
     "node-sass": "^4.13.0",
-    "sass-loader": "^7",
+    "sass-loader": "^8",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
