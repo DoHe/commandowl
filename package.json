@@ -14,7 +14,7 @@
     "eslint": "eslint src/"
   },
   "dependencies": {
-    "bulma": "^0.8.1",
+    "bulma": "^0.8.2",
     "eslint-import-resolver-webpack": "^0.12.1",
     "express": "^4.17.1",
     "mongodb": "^3.5.5",
