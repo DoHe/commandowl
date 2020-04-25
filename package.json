@@ -21,7 +21,7 @@
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vue-server-renderer": "^2.6.11",
-    "vuex": "^3.2.0"
+    "vuex": "^3.3.0"
   },
   "devDependencies": {
     "@akryum/vue-cli-plugin-ssr": "^0.6.0",
@@ -32,15 +32,15 @@
     "@vue/test-utils": "^1.0.0-beta.33",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^24.9.0",
-    "eslint": "^5",
+    "babel-jest": "^25.4.0",
+    "eslint": "^6",
     "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-loader": "^3.0.4",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.14.0",
-    "sass-loader": "^8",
+    "sass-loader": "7.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
